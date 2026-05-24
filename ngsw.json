@@ -1,0 +1,79 @@
+{
+  "configVersion": 1,
+  "timestamp": 1779661755306,
+  "index": "/Simple-Kanban/index.csr.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Simple-Kanban/favicon.ico",
+        "/Simple-Kanban/index.csr.html",
+        "/Simple-Kanban/index.html",
+        "/Simple-Kanban/main-THJPVCYD.js",
+        "/Simple-Kanban/manifest.webmanifest",
+        "/Simple-Kanban/styles-QVED5DKZ.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Simple-Kanban/icons/icon-128x128.png",
+        "/Simple-Kanban/icons/icon-144x144.png",
+        "/Simple-Kanban/icons/icon-152x152.png",
+        "/Simple-Kanban/icons/icon-192x192.png",
+        "/Simple-Kanban/icons/icon-384x384.png",
+        "/Simple-Kanban/icons/icon-512x512.png",
+        "/Simple-Kanban/icons/icon-72x72.png",
+        "/Simple-Kanban/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/Simple-Kanban/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/Simple-Kanban/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/Simple-Kanban/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/Simple-Kanban/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/Simple-Kanban/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/Simple-Kanban/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/Simple-Kanban/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/Simple-Kanban/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/Simple-Kanban/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/Simple-Kanban/index.csr.html": "9b14a2d673454f04abcb5dd395ab8d20cc71b70a",
+    "/Simple-Kanban/index.html": "b0d9d5310eff6650a023d51d71e68f4ea11c887d",
+    "/Simple-Kanban/main-THJPVCYD.js": "7adf3d1560c75fe1cf8385705d8166d90723601d",
+    "/Simple-Kanban/manifest.webmanifest": "5b30ae115d43e4a13f5fb85db2f56a84fbd590a5",
+    "/Simple-Kanban/styles-QVED5DKZ.css": "6e66cdaa20ecb9e333f063f58ee8967e8fb2f811"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
