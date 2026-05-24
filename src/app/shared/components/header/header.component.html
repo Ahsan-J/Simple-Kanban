@@ -1,0 +1,19 @@
+<!-- Header -->
+<div class="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <div>
+        <h1 class="text-3xl font-bold text-slate-800">Project Board</h1>
+        <p class="text-slate-500 mt-1">
+            Manage and track tasks efficiently
+        </p>
+    </div>
+
+    <button (click)="openModal()"
+        class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-slate-800">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        Add Task
+    </button>
+</div>
+
+<create-task-form-modal />

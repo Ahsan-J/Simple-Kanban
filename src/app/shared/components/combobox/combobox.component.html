@@ -1,0 +1,25 @@
+<div [formArrayName]="formArrayName" class="border border-gray-300 rounded-md p-2 flex flex-wrap gap-2 items-center">
+
+    <!-- Chips -->
+    <div class="flex flex-wrap gap-2">
+        @for(tag of tags; track tag; let i = $index){
+            <span class="flex items-center bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
+                {{ tag }}
+                <input type="hidden" [formControlName]="i" />
+                <button type="button" (click)="removeTag(i)" class="ml-2 text-gray-600 hover:text-red-500">
+                    ×
+                </button>
+            </span>
+        }
+    </div>
+
+    <!-- Input -->
+    <input type="text" [formControl]="input" (keydown.enter)="onEnter($event)" placeholder="Add tag..."
+        class="flex-1 min-w-30 outline-none border-none focus:ring-0 text-sm" />
+
+    <!-- Add button -->
+    <button type="button" (click)="addTag()" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">
+        Add
+    </button>
+
+</div>

@@ -1,0 +1,48 @@
+<div
+    class="cursor-pointer rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+
+    <div class="mb-3 flex items-start justify-between">
+        @for(tag of task?.tags; track tag) {
+        <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700"
+            [ngClass]="getStatusClass(task?.columnId)">
+            {{tag}}
+        </span>
+        }
+
+        <button class="text-slate-400 hover:text-slate-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 6h.01M12 12h.01M12 18h.01" />
+            </svg>
+        </button>
+    </div>
+
+    <h3 class="text-sm font-semibold text-slate-800">
+        {{task?.title}}
+    </h3>
+
+    <p class="mt-2 text-sm text-slate-500">
+        {{ task?.description }}
+    </p>
+
+    @if(task?.progress) {
+    <div class="mt-4">
+        <div class="mb-1 flex justify-between text-xs text-slate-500">
+            <span>Progress</span>
+            <span>{{task?.progress}}</span>
+        </div>
+
+        <div class="h-2 w-full rounded-full bg-amber-100">
+            <div class="h-2 rounded-full bg-amber-500" [style.width.%]="task?.progress">
+            </div>
+        </div>
+    </div>
+    }
+
+    <div class="mt-4 flex items-center justify-end">
+        <span class="text-xs text-slate-400">
+            {{ task?.dueAt | date }}
+        </span>
+    </div>
+</div>

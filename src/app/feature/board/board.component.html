@@ -1,0 +1,12 @@
+<!-- Board -->
+<div class="grid gap-6 lg:grid-cols-3">
+    @for(column of columnList; track column.id) {
+        <task-column
+            [connectedColumn]="getConnectedColumns(column.id)" 
+            [column]="column" 
+            [tasks]="getTasks(column.id)" 
+            (onDrop)="onDrop($event, column.id)" />
+    }
+</div>
+
+<create-task-form-modal />

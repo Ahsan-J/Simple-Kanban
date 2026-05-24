@@ -1,0 +1,25 @@
+@if(isOpen) {
+    <div (keydown)="trapFocus($event)" class="fixed inset-0 z-50 flex items-center justify-center">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/50 transition-opacity" (click)="onBackdropClick($event)"></div>
+    
+        <!-- Modal -->
+        <div class="relative z-10 w-full max-w-lg rounded-xl bg-white shadow-xl
+                    transform transition-all duration-200 ease-out
+                    scale-95 opacity-0" (click)="onDialogClick($event)" [ngClass]="{ 'scale-100 opacity-100': isOpen }">
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-gray-100 p-4">
+                <h2 class="text-lg font-semibold">{{ title }}</h2>
+    
+                <button class="text-gray-500 hover:text-black" (click)="close()">
+                    ✕
+                </button>
+            </div>
+    
+            <!-- Body -->
+            <div class="p-4">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </div>
+}
