@@ -1,13 +1,18 @@
-div[cdkDrag] {
-  padding: 12px;
-  margin: 8px;
-  background: #f1f1f1;
-  border: 1px solid #ccc;
-  cursor: move;
+@reference "tailwindcss";
+
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-task-card[cdkDropList] {
-  width: 250px;
-  padding: 10px;
-  border: 2px dashed #aaa;
+.cdk-drag-animating {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+  @apply rounded-xl bg-slate-200 dark:bg-slate-700 border-2 border-dashed border-slate-400 dark:border-slate-500;
+}
+
+.cdk-drag-preview {
+  @apply rounded-xl shadow-2xl ring-2 ring-blue-500/50 cursor-grabbing;
 }

@@ -1,23 +1,25 @@
 @if(isOpen) {
-    <div (keydown)="trapFocus($event)" class="fixed inset-0 z-50 flex items-center justify-center">
+    <div (keydown)="trapFocus($event)" class="fixed inset-0 z-50 flex items-center justify-center p-4">
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-black/50 transition-opacity" (click)="onBackdropClick($event)"></div>
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" (click)="onBackdropClick($event)"></div>
     
         <!-- Modal -->
-        <div class="relative z-10 w-full max-w-lg rounded-xl bg-white shadow-xl
+        <div class="relative z-10 w-full max-w-lg rounded-2xl bg-surface shadow-2xl border border-border-primary
                     transform transition-all duration-200 ease-out
                     scale-95 opacity-0" (click)="onDialogClick($event)" [ngClass]="{ 'scale-100 opacity-100': isOpen }">
             <!-- Header -->
-            <div class="flex items-center justify-between border-b border-gray-100 p-4">
-                <h2 class="text-lg font-semibold">{{ title }}</h2>
+            <div class="flex items-center justify-between border-b border-border-secondary p-5">
+                <h2 class="text-xl font-bold text-text-primary tracking-tight">{{ title }}</h2>
     
-                <button class="text-gray-500 hover:text-black" (click)="close()">
-                    ✕
+                <button class="rounded-lg p-2 text-text-muted hover:bg-surface-hover hover:text-text-primary transition-colors" (click)="close()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </button>
             </div>
     
             <!-- Body -->
-            <div class="p-4">
+            <div class="p-6">
                 <ng-content></ng-content>
             </div>
         </div>

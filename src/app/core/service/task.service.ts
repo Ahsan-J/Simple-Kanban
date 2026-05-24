@@ -1,6 +1,6 @@
 import { inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { Task } from "../../shared/models/task.model";
-import { BehaviorSubject, map, tap } from "rxjs";
+import { BehaviorSubject, tap } from "rxjs";
 import { isPlatformServer } from "@angular/common";
 
 @Injectable({ providedIn: 'root' })
@@ -17,10 +17,12 @@ export class TaskService {
     }
 
     loadTasks() {
-        if(isPlatformServer(this.platformId)) return this.tasks$;
+        if (isPlatformServer(this.platformId)) return this.tasks$;
         const taskString = localStorage.getItem(this.storageKey);
-        if(!taskString?.trim()) return this.tasks$;
-        this.tasksSubject.next(JSON.parse(taskString));
+        if (taskString?.trim()) {
+            const localTasks = JSON.parse(taskString).map((t: any) => new Task(t));
+            this.tasksSubject.next(localTasks);
+        }
         return this.tasks$;
     }
 
@@ -34,6 +36,9 @@ export class TaskService {
     deleteTask(id: string) {
         const filteredValues = this.tasksSubject.value.filter(t => t.id != id);
         this.tasksSubject.next(filteredValues);
+        // this.dbService.delete('tasks', id).then(() => {
+        //     this.notifyServiceWorker();
+        // });
     }
 
     updateTaskColumn(id: string, columnId: Task['columnId']) {
@@ -49,5 +54,16 @@ export class TaskService {
     private saveToStorage(tasks: Array<Task>) {
         if(isPlatformServer(this.platformId)) return;
         localStorage.setItem(this.storageKey, JSON.stringify(tasks));
+        // this.dbService.saveAll('tasks', tasks).then(() => {
+        //     this.notifyServiceWorker();
+        // });
+    }
+
+    private notifyServiceWorker() {
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage({
+                type: 'TASKS_UPDATED'
+            });
+        }
     }
 }

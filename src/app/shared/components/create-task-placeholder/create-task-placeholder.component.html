@@ -1,8 +1,10 @@
-<div class="m-0.5 flex flex-1 min-h-32 border border-dashed border-gray-400 rounded">
-    <button class="flex flex-1 gap-2 justify-center items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-        </svg>
-        Add Task
+<div (click)="openModal()" class="group m-0.5 flex flex-1 min-h-[120px] border-2 border-dashed border-border-primary rounded-xl cursor-pointer transition-all hover:border-blue-500/50 hover:bg-surface-hover/50">
+    <button class="flex flex-1 flex-col gap-2 justify-center items-center text-text-muted group-hover:text-blue-500 transition-colors">
+        <div class="rounded-full bg-surface border border-border-primary p-2 group-hover:border-blue-500/50 group-hover:scale-110 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-wider">Add Task</span>
     </button>
 </div>

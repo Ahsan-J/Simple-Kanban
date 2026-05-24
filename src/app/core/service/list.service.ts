@@ -23,24 +23,31 @@ export class ColumnListService {
     loadColumns() {
         if(isPlatformServer(this.platformId)) return this.lists$;
         const taskString = localStorage.getItem(this.storageKey);
-        if(!taskString?.trim()) return this.lists$;
-        const list: Array<ColumnList> = JSON.parse(taskString);
-        if(!list.length) return this.lists$;
-        this.listSubject.next(list);
+        
+        if(taskString?.trim()) {
+            const list: Array<ColumnList> = JSON.parse(taskString);
+            if(list.length > 0) {
+                this.listSubject.next(list.map(l => new ColumnList(l)));
+                return this.lists$;
+            }
+        }
+
+        this.fillDataIfEmpty([]);
         return this.lists$
     }
 
     fillDataIfEmpty(list: Array<ColumnList>) {
         if(list.length) return;
 
-        list.push(
-            new ColumnList({ id: "simple", title: "Simple" }),
+        const defaultColumns = [
             new ColumnList({ id: "todo", title: "Todo" }),
             new ColumnList({ id: "in-progress", title: "In Progress" }),
             new ColumnList({ id: "done", title: "Done" }),
-        )
+        ];
 
-        this.listSubject.next(list);
+        defaultColumns.forEach(c => c.isSystemGenerated = true);
+
+        this.listSubject.next([...defaultColumns]);
     }
 
     addList(list: ColumnList) {

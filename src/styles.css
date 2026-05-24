@@ -1,3 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
 
-@import 'tailwindcss';
+@theme {
+  --font-sans: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border-primary: var(--border-primary);
+  --color-border-secondary: var(--border-secondary);
+}
+
+:root {
+  --background: #f8fafc; /* slate-50 */
+  --surface: #ffffff;
+  --surface-hover: #f1f5f9; /* slate-100 */
+  --text-primary: #1e293b; /* slate-800 */
+  --text-secondary: #475569; /* slate-600 */
+  --text-muted: #94a3b8; /* slate-400 */
+  --border-primary: #e2e8f0; /* slate-200 */
+  --border-secondary: #f1f5f9; /* slate-100 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #0f172a; /* slate-900 */
+    --surface: #1e293b; /* slate-800 */
+    --surface-hover: #334155; /* slate-700 */
+    --text-primary: #f8fafc; /* slate-50 */
+    --text-secondary: #cbd5e1; /* slate-300 */
+    --text-muted: #64748b; /* slate-500 */
+    --border-primary: #334155; /* slate-700 */
+    --border-secondary: #1e293b; /* slate-800 */
+  }
+}
+
+.dark {
+  --background: #0f172a; /* slate-900 */
+  --surface: #1e293b; /* slate-800 */
+  --surface-hover: #334155; /* slate-700 */
+  --text-primary: #f8fafc; /* slate-50 */
+  --text-secondary: #cbd5e1; /* slate-300 */
+  --text-muted: #64748b; /* slate-500 */
+  --border-primary: #334155; /* slate-700 */
+  --border-secondary: #1e293b; /* slate-800 */
+}
+
+body {
+  @apply bg-background text-text-primary font-sans antialiased;
+}

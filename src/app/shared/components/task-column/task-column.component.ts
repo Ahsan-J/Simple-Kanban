@@ -16,10 +16,20 @@ export class TaskColumnComponent {
     @Input("connectedColumn") connectedTo: Array<string> = [];
     @Input('tasks') tasks: Array<Task> | null = [];
     @Output('onDrop') onDrop = new EventEmitter<Task>();
+    @Output('onAddTask') onAddTask = new EventEmitter<string>();
+    @Output('onDelete') onDelete = new EventEmitter<string>();
 
     drop(event: CdkDragDrop<Task[] | null>) {
         // this.applyListItemMove(event);
         this.onDrop.emit(event.item.data);
+    }
+
+    addNewTask() {
+        this.onAddTask.emit(this.column.id);
+    }
+
+    delete() {
+        this.onDelete.emit(this.column.id);
     }
 
     private applyListItemMove(event: CdkDragDrop<Task[] | null>) {

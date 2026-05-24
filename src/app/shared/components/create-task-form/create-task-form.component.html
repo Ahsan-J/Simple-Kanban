@@ -1,32 +1,50 @@
-<app-modal title="My Tailwind Modal">
-  <form [formGroup]="createTaskForm" (ngSubmit)="addTask()" class="flex flex-col gap-4">
-    <input type="text" placeholder="Title" formControlName="title"
-      class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-    <textarea placeholder="Description" formControlName="description"
-      class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
-    <input type="datetime-local" placeholder="Due date" formControlName="dueAt" class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3
-           text-gray-900 shadow-sm outline-none transition
-           focus:border-blue-500 focus:ring-2 focus:ring-blue-200" />
+<app-modal title="Create New Task">
+  <form [formGroup]="createTaskForm" (ngSubmit)="addTask()" class="flex flex-col gap-5">
+    <div class="space-y-1.5">
+      <label class="text-[11px] font-bold uppercase tracking-wider text-text-muted ml-1">Title</label>
+      <input type="text" placeholder="Enter task title..." formControlName="title"
+        class="w-full px-4 py-3 bg-background border border-border-primary rounded-xl text-text-primary placeholder:text-text-muted focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-all" />
+    </div>
 
-    <combobox [tags]="tagValues" formArrayName="tags" (onAddTag)="addTag($event)" (onRemoveTag)="removeTag($event)" />
+    <div class="space-y-1.5">
+      <label class="text-[11px] font-bold uppercase tracking-wider text-text-muted ml-1">Description</label>
+      <textarea placeholder="Add more details..." formControlName="description" rows="3"
+        class="w-full px-4 py-3 bg-background border border-border-primary rounded-xl text-text-primary placeholder:text-text-muted focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-all resize-none"></textarea>
+    </div>
 
-    <select formControlName="columnId" class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm
-           focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
-      <option value="" disabled>-- Select --</option>
-      @for(c of columnList$ | async; track c.id) {
-        <option [value]="c.id">
-          {{ c.title }}
-        </option>
-      }
-    </select>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="space-y-1.5">
+        <label class="text-[11px] font-bold uppercase tracking-wider text-text-muted ml-1">Due Date</label>
+        <input type="datetime-local" formControlName="dueAt" 
+          class="w-full px-4 py-3 bg-background border border-border-primary rounded-xl text-text-primary focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-all" />
+      </div>
 
-    <div class="flex justify-end gap-2 border-t border-gray-100 p-4">
-      <button class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300" (click)="closeAddTaskModal()">
+      <div class="space-y-1.5">
+        <label class="text-[11px] font-bold uppercase tracking-wider text-text-muted ml-1">Column</label>
+        <select formControlName="columnId" 
+          class="w-full px-4 py-3 bg-background border border-border-primary rounded-xl text-text-primary focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-all appearance-none">
+          <option value="" disabled>Select column</option>
+          @for(c of columnList$ | async; track c.id) {
+            <option [value]="c.id">
+              {{ c.title }}
+            </option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <label class="text-[11px] font-bold uppercase tracking-wider text-text-muted ml-1">Tags</label>
+      <combobox [tags]="tagValues" formArrayName="tags" (onAddTag)="addTag($event)" (onRemoveTag)="removeTag($event)" />
+    </div>
+
+    <div class="flex justify-end gap-3 pt-2 mt-2 border-t border-border-secondary">
+      <button type="button" class="px-6 py-2.5 rounded-xl font-semibold text-text-secondary hover:bg-surface-hover transition-colors" (click)="closeAddTaskModal()">
         Cancel
       </button>
 
-      <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">
-        Create
+      <button type="submit" class="px-6 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/20 hover:bg-blue-700 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none" [disabled]="createTaskForm.invalid">
+        Create Task
       </button>
     </div>
   </form>

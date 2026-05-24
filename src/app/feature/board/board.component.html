@@ -1,12 +1,32 @@
-<!-- Board -->
-<div class="grid gap-6 lg:grid-cols-3">
-    @for(column of columnList; track column.id) {
-        <task-column
-            [connectedColumn]="getConnectedColumns(column.id)" 
-            [column]="column" 
-            [tasks]="getTasks(column.id)" 
-            (onDrop)="onDrop($event, column.id)" />
-    }
+<!-- Board Container -->
+<div class="relative min-h-[calc(100vh-12rem)]">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] bg-size-[24px_24px] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+    <div class="flex gap-8 pb-8 overflow-x-auto min-h-[calc(100vh-12rem)] scrollbar-hide">
+        @for(column of columnList; track column.id) {
+            <task-column
+                class="min-w-[320px] max-w-[320px] shrink-0"
+                [connectedColumn]="getConnectedColumns(column.id)" 
+                [column]="column" 
+                [tasks]="getTasks(column.id)" 
+                (onDrop)="onDrop($event, column.id)"
+                (onAddTask)="openAddTaskModal($event)"
+                (onDelete)="deleteColumn($event)" />
+        }
+
+        <!-- Add Column Button -->
+        <div class="min-w-[320px] max-w-[320px] shrink-0 h-fit">
+            <button (click)="openAddColumnModal()" 
+                class="group w-full flex items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-border-primary p-6 transition-all hover:border-blue-500/50 hover:bg-surface-hover/50">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-border-primary bg-surface transition-all group-hover:border-blue-500/50 group-hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-text-muted group-hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </div>
+                <span class="text-sm font-bold uppercase tracking-wider text-text-muted group-hover:text-blue-500 transition-colors">Add Column</span>
+            </button>
+        </div>
+    </div>
 </div>
 
 <create-task-form-modal />
+<create-column-form-modal />

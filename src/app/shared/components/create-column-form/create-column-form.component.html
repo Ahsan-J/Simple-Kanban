@@ -1,0 +1,22 @@
+<app-modal title="Add New Column">
+  <form [formGroup]="columnForm" (ngSubmit)="addColumn()" class="flex flex-col gap-6">
+    <div class="space-y-1.5">
+      <label class="text-[11px] font-bold uppercase tracking-wider text-text-muted ml-1">Column Title</label>
+      <input type="text" placeholder="e.g. Backlog, Testing, Archived..." formControlName="title"
+        class="w-full px-4 py-3 bg-background border border-border-primary rounded-xl text-text-primary placeholder:text-text-muted focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-all" />
+      @if (columnForm.get('title')?.touched && columnForm.get('title')?.invalid) {
+        <p class="text-[10px] text-red-500 font-medium ml-1">Title is required (min 2 characters)</p>
+      }
+    </div>
+
+    <div class="flex justify-end gap-3 pt-2 border-t border-border-secondary">
+      <button type="button" class="px-6 py-2.5 rounded-xl font-semibold text-text-secondary hover:bg-surface-hover transition-colors" (click)="close()">
+        Cancel
+      </button>
+
+      <button type="submit" class="px-6 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/20 hover:bg-blue-700 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none" [disabled]="columnForm.invalid">
+        Add Column
+      </button>
+    </div>
+  </form>
+</app-modal>
