@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild } from "@angular/core";
+import { Component, inject, OnInit, ViewChild, signal } from "@angular/core";
 import { TaskColumnComponent } from "../../shared/components/task-column/task-column.component";
 import { CreateTaskFormComponent } from "../../shared/components/create-task-form/create-task-form.component";
 import { CreateColumnFormComponent } from "../../shared/components/create-column-form/create-column-form.component";
@@ -21,6 +21,7 @@ export class BoardComponent implements OnInit {
 
     columnList: Array<ColumnList> = []
     tasks: Array<Task> = [];
+    activeColumnId = signal<string | null>(null);
 
     getConnectedColumns(columnId: string) {
         return this.columnList.map(c => c.id).filter(cId => cId != columnId);
@@ -32,13 +33,16 @@ export class BoardComponent implements OnInit {
 
     ngOnInit() {
         this.columnListService.loadColumns().subscribe(cl => {
-            console.log("Columns", cl)
-            this.columnList = cl
+            this.columnList = cl;
+            if (cl.length > 0 && !this.activeColumnId()) {
+                this.activeColumnId.set(cl[0].id);
+            }
         });
-        this.taskService.loadTasks().subscribe(t => {
-            console.log("Tasks", t);
-            this.tasks = t
-        });
+        this.taskService.loadTasks().subscribe(t => this.tasks = t);
+    }
+
+    setActiveColumn(id: string) {
+        this.activeColumnId.set(id);
     }
 
     onDrop(task: Task, newColumnId: string) {
