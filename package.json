@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "ng build --base-href /Simple-Kanban/ && npx angular-cli-ghpages --dir=dist/todo/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:todo": "node dist/todo/server/server.mjs"
